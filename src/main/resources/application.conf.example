@@ -1,0 +1,8 @@
+bot {
+    token = ""
+    guild-id = ""
+    new-shit-id = ""
+}
+google {
+    api-key = ""
+}
