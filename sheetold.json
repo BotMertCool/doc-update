@@ -1,5 +1,5 @@
 {
-  "range": "Unreleased!A1:I2038",
+  "range": "Unreleased!A1:I2039",
   "majorDimension": "ROWS",
   "values": [
     [
@@ -1186,7 +1186,7 @@
       "Robocop [V3]",
       "Percussion is mixed differently and the outro verse is absent.",
       "3:26",
-      "",
+      "Oct 24, 2008",
       "OG",
       "Full",
       "CD Quality",
@@ -3196,16 +3196,6 @@
     ],
     [
       "Thank God For Drugs",
-      "New Slaves [V4]",
-      "Demo owned by waterfalls that has a different vocal take on the outro and no vocal effects. Found in the \"I Am A God\" Protool session.",
-      "",
-      "",
-      "Demo",
-      "Rumored",
-      "CD Quality"
-    ],
-    [
-      "Thank God For Drugs",
       "Nobody To Love [V1]\n(feat. John Legend)\n(Bound, Bound 2)",
       "Tony Williams confirmed John Legend recorded his hook before him, so a version with just John Legend's hook likely exists. Censored DM from someone who worked on the song notes the song was originally titled \"Nobody To Love.\" A picture from Sak Pase of TGFD files later confirmed this title.",
       "",
@@ -3769,7 +3759,7 @@
     ],
     [
       "Yeezus",
-      "New Slaves [V5]",
+      "New Slaves [V4]",
       "",
       "",
       "",
@@ -3780,7 +3770,7 @@
     ],
     [
       "Yeezus",
-      "New Slaves [V6]\n(feat. Frank Ocean)",
+      "New Slaves [V5]\n(feat. Frank Ocean)",
       "Includes different bass and a different Frank Ocean outro. It has some mixing changes that include the lack of vocal effects. The HQ snippet is likely the same version but yet unconfirmed.",
       "",
       "",
@@ -3791,7 +3781,7 @@
     ],
     [
       "Yeezus",
-      "New Slaves [V7]\n(feat. Frank Ocean)",
+      "New Slaves [V6]\n(feat. Frank Ocean)",
       "Version of \"New Slaves\" performed at Governor's Ball 2013, Frank Ocean has more vocals on the outro, singing the parts that Kanye sings in the final version.",
       "",
       "Jun 9, 2013",
@@ -14374,17 +14364,6 @@
     ],
     [
       "DONDA [V1]",
-      "24 [V10]\n(feat. KayCyy, Sunday Service Choir, Buju Banton & Dem Jointz)\n(You're Gonna Be Ok, 24 Hours)",
-      "A version of 24 is said to exist that contains a Buju Banton verse. Said to be very similar to the main July version.",
-      "",
-      "Aug 5, 2022",
-      "OG",
-      "Snippet",
-      "CD Quality",
-      "https://onlyfiles.io/f/437adb8e3c9f4b30868be8108a44fc3f"
-    ],
-    [
-      "DONDA [V1]",
       "Alien [V15]\n(feat. Ant Clemons)\n(Alien / Space X, Godzilla, Allien, ALN, Aliens)",
       "July version of \"Alien\" which was seen on multiple DONDA tracklists. Kanye's mumble freestyle seems to have been rearranged, possibly to decrease the amount of mumble present in the song.",
       "2:16",
@@ -15006,17 +14985,6 @@
     ],
     [
       "DONDA [V1]",
-      "Stand United\n(feat. Buju Banton & SAINt JHN)",
-      "A throwaway from Donda, featuring Buju Banton & SAINt JHN. Described to be \"15% mumble\" and to contain a \"long ye verse\". Also said to be \"reggae kmsa with the sample doing the hook\"",
-      "6:51",
-      "Aug 5, 2022",
-      "Throwaway",
-      "Snippet",
-      "CD Quality",
-      "https://onlyfiles.io/f/a1a39fd072314110ba265af16f609079"
-    ],
-    [
-      "DONDA [V1]",
       "Tell The Vision [V2]\n(We Made It, RIP Pop Smoke)",
       "Track 13 from the original July tracklist off Kanye's Twitter. Unknown how different this version is from other versions of the song.",
       "",
@@ -15185,13 +15153,35 @@
     ],
     [
       "DONDA [V1]",
-      "24 [V11]\n(feat. KayCyy, Sunday Service Choir & Dem Jointz)\n(You're Gonna Be Ok, 24 Hours)",
+      "24 [V10]\n(feat. KayCyy, Sunday Service Choir & Dem Jointz)\n(You're Gonna Be Ok, 24 Hours)",
       "A version of \"24\" with a Donda West outro was confirmed by Waterfalls to have been made in the With Child era. Likely from the Visual Album.",
       "",
       "",
       "OG",
       "Rumored",
       "Not Available"
+    ],
+    [
+      "DONDA [V1]",
+      "24 [V11]\n(feat. KayCyy, Sunday Service Choir, Buju Banton, SAINt JHN & Dem Jointz)\n(You're Gonna Be Ok, 24 Hours)",
+      "A version of 24 containing a Buju Banton and SAINt JHN verse. Similar to the July version but with a very different mix and additional choir vocals under Kanye's verse.",
+      "5:01",
+      "Aug 8, 2022",
+      "OG",
+      "Full",
+      "CD Quality",
+      "https://onlyfiles.io/f/b1eaebe4067a4a44a803875764d813e1"
+    ],
+    [
+      "DONDA [V1]",
+      "24 [V12]\n(feat. KayCyy, Sunday Service Choir, Buju Banton, SAINt JHN & Dem Jointz)\n(You're Gonna Be Ok, 24 Hours)",
+      "A version of 24 containing a Buju Banton and SAINt JHN verse. Very similar to the previous version but with a completely different mix.",
+      "5:01",
+      "Aug 8, 2022",
+      "OG",
+      "Snippet",
+      "CD Quality",
+      "https://onlyfiles.io/f/6a4aba36641a4b03a9ee43d587ebb57e"
     ],
     [
       "DONDA [V1]",
@@ -15282,7 +15272,7 @@
     [
       "DONDA [V1]",
       "Crash Landing [V4]\n(feat. Sheck Wes & KayCyy) (prod. MIKE DEAN)",
-      "DONDA 2020 throwaway featuring KayCyy & Sheck Wes where they all have a verse. Said to be the ending to the DONDA visual album. 8.1.20 is the date on this version.",
+      "DONDA 2020 throwaway featuring KayCyy & Sheck Wes where they all have a verse. Said to have \"mumble where you don't really notice it\". Sheck Wes verse is fully finished. Said to be the ending to the DONDA visual album. 8.1.20 is the date on this version.",
       "",
       "Aug 7, 2022",
       "Throwaway",
@@ -15514,6 +15504,27 @@
       "",
       "",
       "Ref Track",
+      "Rumored",
+      "Not Available"
+    ],
+    [
+      "DONDA [V1]",
+      "Stand United [V1]\n(feat. Buju Banton & SAINt JHN)",
+      "Donda era throwaway freestyle featuring Buju Banton & SAINt JHN. Contains mumble.",
+      "6:21",
+      "Aug 8, 2022",
+      "Throwaway",
+      "Full",
+      "CD Quality",
+      "https://onlyfiles.io/f/3898fe63f6b843f7be700234e69a0174"
+    ],
+    [
+      "DONDA [V1]",
+      "Stand United [V2]\n(feat. Buju Banton & SAINt JHN)",
+      "Different version of Stand United that is 30 seconds longer.",
+      "6:51",
+      "",
+      "Throwaway",
       "Rumored",
       "Not Available"
     ],

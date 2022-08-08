@@ -8,15 +8,23 @@ import lombok.Getter;
 import me.botmert.bot.song.SongHandler;
 
 import me.botmert.bot.song.SongTask;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.entities.TextChannel;
 
 import javax.security.auth.login.LoginException;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 @Getter
 public class DiscordBot {
@@ -43,9 +51,9 @@ public class DiscordBot {
     
     public static void main(String[] args) throws Exception {
         new DiscordBot();
-        TimerTask timerTask = new SongTask();
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(timerTask, 0L, 10_000L);
+        
+        ScheduledThreadPoolExecutor threadPool = new ScheduledThreadPoolExecutor(1);
+        threadPool.scheduleAtFixedRate(new SongTask(), 60, 61, TimeUnit.SECONDS);
     }
     
 }
