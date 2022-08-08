@@ -7,6 +7,7 @@ import lombok.Getter;
 
 import me.botmert.bot.song.SongHandler;
 
+import me.botmert.bot.song.SongTask;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -38,27 +39,13 @@ public class DiscordBot {
                 .build().awaitReady();
         
         songHandler = new SongHandler();
-    
-
-        
-        TimerTask task = new TimerTask() {
-            public void run() {
-                try {
-                    DiscordBot.getInstance().getSongHandler().findNewSongs();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-    
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(task, 0L, 10_000L);
     }
     
     public static void main(String[] args) throws Exception {
         new DiscordBot();
+        TimerTask timerTask = new SongTask();
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(timerTask, 0L, 10_000L);
     }
-    
-    
     
 }

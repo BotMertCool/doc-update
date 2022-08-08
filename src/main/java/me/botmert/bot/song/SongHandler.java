@@ -22,8 +22,10 @@ public class SongHandler {
 
     Set<Song> missingSongs = new HashSet<>();
     
-    public void findNewSongs() {
+    public void findNewSongs() throws IOException {
+        URL sheet = new URL("https://sheets.googleapis.com/v4/spreadsheets/1vW-nFbnR02F9BEnNPe5NBejHRGPt0QEGOYXLSePsC1k/values/Unreleased?key=" + DiscordBot.getInstance().getConfig().getString("google.api-key"));
         
+        urlToFile(sheet, "sheetnew.json");
         try {
             JSONParser parser = new JSONParser();
 
@@ -52,6 +54,8 @@ public class SongHandler {
                     }
                 }
             }
+    
+            urlToFile(sheet, "sheetold.json");
             
             if (changes) {
                 Guild guild = DiscordBot.getInstance().getClient().getGuildById(DiscordBot.getInstance().getConfig().getString("bot.guild-id"));
@@ -94,10 +98,10 @@ public class SongHandler {
     }
     
     public SongHandler() throws IOException {
-        URL sheet = new URL("https://sheets.googleapis.com/v4/spreadsheets/1vW-nFbnR02F9BEnNPe5NBejHRGPt0QEGOYXLSePsC1k/values/Unreleased?key=" + DiscordBot.getInstance().getConfig().getString("google.api-key"));
-        urlToFile(sheet, "sheetnew.json");
+
+
         findNewSongs();
-        urlToFile(sheet, "sheetold.json");
+
     }
     
 }
