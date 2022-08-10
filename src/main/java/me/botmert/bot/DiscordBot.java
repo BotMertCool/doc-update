@@ -5,6 +5,7 @@ import com.typesafe.config.ConfigFactory;
 
 import lombok.Getter;
 
+import me.botmert.bot.command.AbbContextMenu;
 import me.botmert.bot.command.MessageCommand;
 import me.botmert.bot.command.SnippetCommand;
 import me.botmert.bot.song.SongHandler;
@@ -46,7 +47,11 @@ public class DiscordBot {
         
         this.client = JDABuilder
                 .createDefault(config.getString("bot.token"))
-                .addEventListeners(new SnippetCommand(), new MessageCommand())
+                .addEventListeners(
+                        new SnippetCommand(),
+                        new MessageCommand(),
+                        new AbbContextMenu()
+                )
                 .setStatus(OnlineStatus.ONLINE)
                 .build().awaitReady();
     
@@ -56,6 +61,7 @@ public class DiscordBot {
         OptionData option2 = new OptionData(OptionType.STRING, "message", "Message text", true);
         //commandData.add(Commands.slash("snippet", "Find snippets for a song in the tracker").addOptions(option1));
         //commandData.add(Commands.slash("message", "Lets BOTMERT speak through the bot").addOptions(option2));
+        commandData.add(Commands.message("Undo abbreviation"));
     
         Guild guild = DiscordBot.getInstance().getClient().getGuildById(DiscordBot.getInstance().getConfig().getString("bot.guild-id"));
         if (guild != null) {
@@ -69,7 +75,7 @@ public class DiscordBot {
         new DiscordBot();
         
         ScheduledThreadPoolExecutor threadPool = new ScheduledThreadPoolExecutor(1);
-        threadPool.scheduleAtFixedRate(new SongTask(), 1, 90, TimeUnit.SECONDS);
+        threadPool.scheduleAtFixedRate(new SongTask(), 1, 120, TimeUnit.SECONDS);
         threadPool.scheduleAtFixedRate(new BotTask(), 1, 8, TimeUnit.MINUTES);
     }
     
