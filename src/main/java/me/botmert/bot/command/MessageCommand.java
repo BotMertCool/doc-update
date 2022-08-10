@@ -30,7 +30,7 @@ public class MessageCommand extends ListenerAdapter {
     
                 for (String s : message.split(" ")) {
                     if (!s.equals("!message")) {
-                        stringBuilder.append(s + " ");
+                        stringBuilder.append(s.replace("@everyone", "@noone")).append(" ");
                     }
                 }
     

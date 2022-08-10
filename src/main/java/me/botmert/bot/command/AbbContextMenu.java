@@ -20,7 +20,7 @@ public class AbbContextMenu extends ListenerAdapter {
                 JSONParser parser = new JSONParser();
                 JSONArray abbjson = (JSONArray) parser.parse(new FileReader("abb.json"));
                 
-                String words = event.getTarget().getContentRaw();
+                String words = event.getTarget().getContentRaw().replace("@everyone", "@noone") + " ";
                 StringBuilder stringBuilder = new StringBuilder();
                 int i = 0;
                 
@@ -30,7 +30,7 @@ public class AbbContextMenu extends ListenerAdapter {
                     String abbreviation = (String) name.get("abbreviation");
                     
 
-                    if (words.toLowerCase().contains(" " + word) || words.toLowerCase().equalsIgnoreCase(word) || words.split(" ")[0].equalsIgnoreCase(word)) {
+                    if (words.toLowerCase().contains(" " + word + " ") || words.toLowerCase().equalsIgnoreCase(word) || words.split(" ")[0].equalsIgnoreCase(word)) {
                         words = words.toLowerCase().replace(word, abbreviation);
                         i++;
                         //stringBuilder.append("Word: ").append(word).append("Abbreviation: ").append(abbreviation).append("\n");
