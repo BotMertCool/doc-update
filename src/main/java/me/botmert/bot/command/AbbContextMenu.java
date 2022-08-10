@@ -30,7 +30,7 @@ public class AbbContextMenu extends ListenerAdapter {
                     String abbreviation = (String) name.get("abbreviation");
                     
 
-                    if (words.toLowerCase().contains(" " + word) || words.toLowerCase().equalsIgnoreCase(word)) {
+                    if (words.toLowerCase().contains(" " + word) || words.toLowerCase().equalsIgnoreCase(word) || words.split(" ")[0].equalsIgnoreCase(word)) {
                         words = words.toLowerCase().replace(word, abbreviation);
                         i++;
                         //stringBuilder.append("Word: ").append(word).append("Abbreviation: ").append(abbreviation).append("\n");
@@ -41,7 +41,6 @@ public class AbbContextMenu extends ListenerAdapter {
             } catch (ParseException | IOException e) {
                 throw new RuntimeException(e);
             }
-    
         }
     }
 }

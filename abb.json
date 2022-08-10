@@ -1,5 +1,9 @@
 [
   {
+    "word": "ye",
+    "abbreviation": "KANYE"
+  },
+  {
     "word": "btcd",
     "abbreviation": "Before The College Dropout"
   },
@@ -91,6 +95,22 @@
   {
     "word": "d2",
     "abbreviation": "Donda 2"
+  },
+  {
+    "word": "pt1",
+    "abbreviation": "Part 1"
+  },
+  {
+    "word": "pt2",
+    "abbreviation": "Part 2"
+  },
+  {
+    "word": "fml",
+    "abbreviation": "Fuck my life / For my, lady"
+  },
+  {
+    "word": "fsmh",
+    "abbreviation": "Father Stretch My Hands"
   },
   {
     "word": "cub",
