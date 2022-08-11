@@ -5,9 +5,7 @@ import com.typesafe.config.ConfigFactory;
 
 import lombok.Getter;
 
-import me.botmert.bot.command.AbbContextMenu;
-import me.botmert.bot.command.MessageCommand;
-import me.botmert.bot.command.SnippetCommand;
+import me.botmert.bot.command.*;
 import me.botmert.bot.song.SongHandler;
 
 import me.botmert.bot.song.SongTask;
@@ -50,6 +48,8 @@ public class DiscordBot {
                 .addEventListeners(
                         new SnippetCommand(),
                         new MessageCommand(),
+                        new YandhiCommand(),
+                        new TheEndCommand(),
                         new AbbContextMenu()
                 )
                 .setStatus(OnlineStatus.ONLINE)
@@ -60,7 +60,8 @@ public class DiscordBot {
         OptionData option1 = new OptionData(OptionType.STRING, "song", "Name sensitive", true);
         OptionData option2 = new OptionData(OptionType.STRING, "message", "Message text", true);
         //commandData.add(Commands.slash("snippet", "Find snippets for a song in the tracker").addOptions(option1));
-        //commandData.add(Commands.slash("message", "Lets BOTMERT speak through the bot").addOptions(option2));
+        commandData.add(Commands.slash("yandhidate", "Days until kanye drops yandhi"));
+        commandData.add(Commands.slash("theend", "Days until THE END"));
         commandData.add(Commands.message("Undo abbreviation"));
     
         Guild guild = DiscordBot.getInstance().getClient().getGuildById(DiscordBot.getInstance().getConfig().getString("bot.guild-id"));
