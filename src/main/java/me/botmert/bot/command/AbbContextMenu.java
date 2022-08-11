@@ -31,7 +31,7 @@ public class AbbContextMenu extends ListenerAdapter {
                     
 
                     if (words.toLowerCase().contains(" " + word + " ") || words.toLowerCase().equalsIgnoreCase(word) || words.split(" ")[0].equalsIgnoreCase(word)) {
-                        words = words.toLowerCase().replace(word, abbreviation);
+                        words = words.toLowerCase().replace(word, "**" + abbreviation + "**");
                         i++;
                         //stringBuilder.append("Word: ").append(word).append("Abbreviation: ").append(abbreviation).append("\n");
                     }
