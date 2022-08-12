@@ -40,10 +40,10 @@ public class SheetHandler {
 
                 String era = (String) newSong.get("Era");
                 String name = (String) newSong.get("Name\n(Check out the Tracker website!)");
-                name = name.replace("\n", ", ");
+                name = name.replace("\n", " ");
                 String notes = (String) newSong.get("Notes\n(Join the Discord for updates and suggestions)");
                 String trackLength = (String) newSong.get("Track Length");
-                String leakDate = (String) newSong.get("Era");
+                String leakDate = (String) newSong.get("Leak\nDate");
                 String type = (String) newSong.get("Type");
                 String available = (String) newSong.get("Available");
                 String quality = (String) newSong.get("Quality");
@@ -107,10 +107,10 @@ public class SheetHandler {
                 if (newSong.size() >= 8) {
                     String era = (String) newSong.get("Era");
                     String name = (String) newSong.get("Name\n(Check out the Tracker website!)");
-                    name = name.replace("\n", ", ");
+                    name = name.replace("\n", " ");
                     String notes = (String) newSong.get("Notes\n(Join the Discord for updates and suggestions)");
                     String trackLength = (String) newSong.get("Track Length");
-                    String leakDate = (String) newSong.get("Era");
+                    String leakDate = (String) newSong.get("Leak\nDate");
                     String type = (String) newSong.get("Type");
                     String available = (String) newSong.get("Available");
                     String quality = (String) newSong.get("Quality");
@@ -175,17 +175,17 @@ public class SheetHandler {
              */
             
             for (Song song : currentSongs) {
-    
-                String songInfo = song.getName().replace("\\n", " ");
-    
+                
                 StringBuilder message = new StringBuilder();
     
                 EmbedBuilder embed = new EmbedBuilder();
                 
+                //System.out.println(song.getName());
+                
                 if (getOldSong(song.getName()) == null) {
                     //if (lastSongs.isEmpty()) return;
                     message.append("\n\n**Available: **").append(song.getAvailable());
-                    message.append("\n\n**Song: **").append(songInfo);
+                    message.append("\n\n**Song: **").append(song.getName());
                     message.append("\n\n**Era: **").append(song.getEra());
                     message.append("\n\n**Description: **").append(song.getNotes());
         
@@ -215,9 +215,10 @@ public class SheetHandler {
                 }
                 
                 Song oldSong = getOldSong(song.getName());
-
+                
                 if (song.getName().startsWith("???") || song.getName().startsWith("Unknown") || song.getName().contains("???") || song.getName().contains("Unknown") ||  song.getName().contains("Collaborations]"))
                     continue;
+                
                 if (!(oldSong.getEra().equals(song.getEra()))) {
                     message.append("The song \"**").append(song.getName()).append("**\" (").append(song.getAvailable()).append(") had an era change.");
                     message.append("\n\n** New Era: **").append(song.getEra());
@@ -304,6 +305,12 @@ public class SheetHandler {
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void stop() throws IOException {
+        URL sheet = new URL("http://localhost:4000/1vW-nFbnR02F9BEnNPe5NBejHRGPt0QEGOYXLSePsC1k/0");
+    
+        urlToFile(sheet, "sheetold.json");
     }
     
     public void urlToFile(URL url, String fileName) throws IOException {

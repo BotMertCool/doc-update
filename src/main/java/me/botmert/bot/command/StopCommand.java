@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -40,13 +41,21 @@ public class StopCommand extends ListenerAdapter {
             }
             
             if (event.getUser().getId().equals("348595558468026369")){
-                SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-                Date date = new Date();
-                event.reply("Stopping...").queue();
-                logsChannel.sendMessageEmbeds(new EmbedBuilder().setColor(Color.RED).setDescription("Stopping bot. | " + formatter.format(date) + " EST").build()).queue();
-                
-                ScheduledThreadPoolExecutor threadPool = new ScheduledThreadPoolExecutor(1);
-                threadPool.schedule(new SheetTask(), 5, TimeUnit.SECONDS);
+
+                try {
+                    SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+                    Date date = new Date();
+
+                    logsChannel.sendMessageEmbeds(new EmbedBuilder().setColor(Color.RED).setDescription("Stopping bot. | " + formatter.format(date) + " EST").build()).queue();
+                    DiscordBot.getInstance().getSongHandler().stop();
+                    ScheduledThreadPoolExecutor threadPool = new ScheduledThreadPoolExecutor(1);
+                    event.reply("Stop process finished...").queue();
+                    
+                    threadPool.schedule(new StopTask(), 5, TimeUnit.SECONDS);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
             } else {
                 event.reply("You do not have permissions to use this command.").queue();
             }
