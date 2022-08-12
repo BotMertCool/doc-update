@@ -11,7 +11,7 @@ public class MessageCommand extends ListenerAdapter {
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         if (event.getChannel().getId().equals("1005362754196090891")) {
-            if(!event.getMessage().getStickers().size().equals(0) || !event.getMessage().getStickers().get(0).getId().equals("992257946136354876")) {
+            if(!event.getMessage().getStickers().size() == 0 || !event.getMessage().getStickers().get(0).getId().equals("992257946136354876")) {
                 event.getMessage().delete().queue();
             }
         }
