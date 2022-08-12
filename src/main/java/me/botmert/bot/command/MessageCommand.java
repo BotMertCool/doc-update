@@ -1,19 +1,10 @@
 package me.botmert.bot.command;
 
-import me.botmert.bot.DiscordBot;
-import me.botmert.bot.song.Song;
-import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.MessageBuilder;
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import org.jetbrains.annotations.NotNull;
-
-import java.awt.Color;
-import java.util.*;
 
 public class MessageCommand extends ListenerAdapter {
     

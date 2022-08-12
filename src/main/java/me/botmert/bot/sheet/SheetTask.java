@@ -1,11 +1,11 @@
-package me.botmert.bot.song;
+package me.botmert.bot.sheet;
 
 import me.botmert.bot.DiscordBot;
 
-public class SongTask implements Runnable {
+public class SheetTask implements Runnable {
     public void run() {
         try {
-            DiscordBot.getInstance().getSongHandler().findNewSongs();
+            DiscordBot.getInstance().getSongHandler().findNewEdit();
         } catch (Exception e) {
             e.printStackTrace();
         }

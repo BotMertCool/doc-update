@@ -2,7 +2,7 @@ bot {
     token = ""
     guild-id = ""
     new-shit-id = ""
-    fiji-id = ""
+    logs-id = ""
 }
 google {
     api-key = ""

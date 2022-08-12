@@ -6,9 +6,9 @@ import com.typesafe.config.ConfigFactory;
 import lombok.Getter;
 
 import me.botmert.bot.command.*;
-import me.botmert.bot.song.SongHandler;
+import me.botmert.bot.sheet.SheetHandler;
 
-import me.botmert.bot.song.SongTask;
+import me.botmert.bot.sheet.SheetTask;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -20,8 +20,6 @@ import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 
 import javax.security.auth.login.LoginException;
-
-import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,13 +33,13 @@ public class DiscordBot {
     
     private final JDA client;
     private final Config config;
-    private final SongHandler songHandler;
+    private final SheetHandler songHandler;
     
     public DiscordBot() throws LoginException, InterruptedException {
         instance = this;
         
         System.setProperty("config.file", System.getProperty("config.file", "application.conf"));
-        config = ConfigFactory.load();
+        this.config = ConfigFactory.load();
         
         this.client = JDABuilder
                 .createDefault(config.getString("bot.token"))
@@ -49,7 +47,7 @@ public class DiscordBot {
                         new SnippetCommand(),
                         new MessageCommand(),
                         new YandhiCommand(),
-                        new TheEndCommand(),
+                        new StopCommand(),
                         new AbbContextMenu()
                 )
                 .setStatus(OnlineStatus.ONLINE)
@@ -61,7 +59,7 @@ public class DiscordBot {
         OptionData option2 = new OptionData(OptionType.STRING, "message", "Message text", true);
         //commandData.add(Commands.slash("snippet", "Find snippets for a song in the tracker").addOptions(option1));
         commandData.add(Commands.slash("yandhidate", "Days until kanye drops yandhi"));
-        commandData.add(Commands.slash("theend", "Days until THE END"));
+        commandData.add(Commands.slash("stop", "Exit the bot system process."));
         commandData.add(Commands.message("Undo abbreviation"));
     
         Guild guild = DiscordBot.getInstance().getClient().getGuildById(DiscordBot.getInstance().getConfig().getString("bot.guild-id"));
@@ -69,14 +67,14 @@ public class DiscordBot {
             guild.updateCommands().addCommands(commandData).queue();
         }
         
-        songHandler = new SongHandler();
+        this.songHandler = new SheetHandler();
     }
     
     public static void main(String[] args) throws Exception {
         new DiscordBot();
         
         ScheduledThreadPoolExecutor threadPool = new ScheduledThreadPoolExecutor(1);
-        threadPool.scheduleAtFixedRate(new SongTask(), 1, 120, TimeUnit.SECONDS);
+        threadPool.scheduleAtFixedRate(new SheetTask(), 1, 90, TimeUnit.SECONDS);
         threadPool.scheduleAtFixedRate(new BotTask(), 1, 8, TimeUnit.MINUTES);
     }
     
