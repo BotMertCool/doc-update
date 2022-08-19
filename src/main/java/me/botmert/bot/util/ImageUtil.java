@@ -1,6 +1,7 @@
 package me.botmert.bot.util;
 
 public class ImageUtil {
+    
     public static String getImage(String era) {
         String eraIcon;
         

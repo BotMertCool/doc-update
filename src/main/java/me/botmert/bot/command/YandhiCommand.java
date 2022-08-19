@@ -23,6 +23,8 @@ public class YandhiCommand extends ListenerAdapter {
             Instant now = Instant.now();
             long diff = Duration.between(start,now).toDays();
             event.reply("Yandhi releases in " + Math.abs(diff) + " days! get ready for some MUSSIIIIIICCCC!!!!").queue();
+    
+
         }
     }
     

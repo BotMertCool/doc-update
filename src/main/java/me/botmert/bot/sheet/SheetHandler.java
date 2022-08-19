@@ -9,7 +9,6 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.TextChannel;
 
-import org.checkerframework.checker.units.qual.A;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -28,7 +27,7 @@ public class SheetHandler {
     
     private ArrayList<Song> lastSongs = new ArrayList<>();
     
-    public Song getOldSong(String songName) throws IOException, ParseException {
+    public Song getOldSong(String text) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         
         JSONArray sheetold = (JSONArray) parser.parse(new FileReader("sheetold.json"));
@@ -48,13 +47,17 @@ public class SheetHandler {
                 String available = (String) newSong.get("Available");
                 String quality = (String) newSong.get("Quality");
                 String links = null;
-            
+                
                 if (newSong.size() == 9) {
                     links = (String) newSong.get("Link(s)");
                 }
                 
-                if (songName.equals(name))
+                if (text.equals(name)) {
                     return new Song(era, name, notes, trackLength, leakDate, type, available, quality, links);
+                } else if (text.equals(notes)) {
+                    return new Song(era, name, notes, trackLength, leakDate, type, available, quality, links);
+                }
+
             }
         }
         return null;
@@ -182,7 +185,12 @@ public class SheetHandler {
                 
                 //System.out.println(song.getName());
                 
-                if (getOldSong(song.getName()) == null) {
+                if (song.getName().startsWith("???") || song.getName().startsWith("Unknown") || song.getName().contains("???") || song.getName().contains("Unknown") ||  song.getName().contains("Collaborations]"))
+                    continue;
+                
+                Song oldSong = null;
+    
+                if (getOldSong(song.getName()) == null && getOldSong(song.getNotes()) == null) {
                     //if (lastSongs.isEmpty()) return;
                     message.append("\n\n**Available: **").append(song.getAvailable());
                     message.append("\n\n**Song: **").append(song.getName());
@@ -204,7 +212,7 @@ public class SheetHandler {
                             .setDescription(message)
                             .setThumbnail(ImageUtil.getImage(song.getEra()))
                             .setAuthor("NEW NEW NEW NEW NEW NEW");
-                    
+        
                     if (newShitChannel != null) {
                         if (!(embed.isEmpty())) {
                             newShitChannel.sendMessageEmbeds(embed.build()).queue();
@@ -212,14 +220,26 @@ public class SheetHandler {
                     } else {
                         System.out.println("TEXT CHANNEL NULL LOOOOL");
                     }
+                    continue;
                 }
                 
-                Song oldSong = getOldSong(song.getName());
+                if (getOldSong(song.getName()).getName().equals(song.getName())) {
+                     oldSong = getOldSong(song.getName());
+                } else if (getOldSong(song.getName()).getNotes().equals(song.getNotes())) {
+                    oldSong = getOldSong(song.getNotes());
+                }
                 
-                if (song.getName().startsWith("???") || song.getName().startsWith("Unknown") || song.getName().contains("???") || song.getName().contains("Unknown") ||  song.getName().contains("Collaborations]"))
-                    continue;
-                
-                if (!(oldSong.getEra().equals(song.getEra()))) {
+                if (!(oldSong.getName().equals(song.getName()))) {
+                    message.append("The song \"**").append(song.getName()).append("**\" (").append(song.getAvailable()).append(") had an name change.");
+                    message.append("\n\n** New Name: **").append(song.getEra());
+                    message.append("\n\n** Old Name: **").append(oldSong.getEra());
+        
+                    embed.setColor(Color.getHSBColor(358, 100, 49))
+                            .setDescription(message)
+                            .setThumbnail(ImageUtil.getImage(song.getEra()))
+                            .setAuthor("EDIT EDIT EDIT EDIT EDIT EDIT")
+                            .build();
+                } else if (!(oldSong.getEra().equals(song.getEra()))) {
                     message.append("The song \"**").append(song.getName()).append("**\" (").append(song.getAvailable()).append(") had an era change.");
                     message.append("\n\n** New Era: **").append(song.getEra());
                     message.append("\n\n** Old Era: **").append(oldSong.getEra());
@@ -242,8 +262,11 @@ public class SheetHandler {
                 } else if (!(oldSong.getTrackLength().equals(song.getTrackLength()))) {
                     message.append("The song \"**").append(song.getName()).append("**\" (").append(song.getAvailable()).append(") had a track length change.");
                     message.append("\n\n** New Track Length: **").append(song.getTrackLength());
-                    message.append("\n\n** Old Track Length: **").append(oldSong.getTrackLength());
-        
+                    
+                    if (!oldSong.getTrackLength().equals("")) {
+                        message.append("\n\n** Old Track Length: **").append(oldSong.getTrackLength());
+                    }
+                    
                     embed.setColor(Color.getHSBColor(358, 100, 49))
                             .setDescription(message)
                             .setThumbnail(ImageUtil.getImage(song.getEra()))
@@ -252,7 +275,9 @@ public class SheetHandler {
                 } else if (!(oldSong.getLeakDate().equals(song.getLeakDate()))) {
                     message.append("The song \"**").append(song.getName()).append("**\" (").append(song.getAvailable()).append(") had a leak date change.");
                     message.append("\n\n** New Leak Date: **").append(song.getLeakDate());
-                    message.append("\n\n** Old Leak Date: **").append(oldSong.getLeakDate());
+                    if (!oldSong.getLeakDate().equals("")) {
+                        message.append("\n\n** Old Leak Date: **").append(oldSong.getLeakDate());
+                    }
         
                     embed.setColor(Color.getHSBColor(358, 100, 49))
                             .setDescription(message)
