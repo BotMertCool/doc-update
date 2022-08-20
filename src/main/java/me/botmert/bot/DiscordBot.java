@@ -74,7 +74,7 @@ public class DiscordBot {
         new DiscordBot();
         
         ScheduledThreadPoolExecutor threadPool = new ScheduledThreadPoolExecutor(1);
-        threadPool.scheduleAtFixedRate(new SheetTask(), 1, 90, TimeUnit.SECONDS);
+        threadPool.scheduleAtFixedRate(new SheetTask(), 1, 240, TimeUnit.SECONDS);
         //threadPool.scheduleAtFixedRate(new BotTask(), 1, 8, TimeUnit.MINUTES);
     }
     

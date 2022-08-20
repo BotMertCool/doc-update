@@ -188,31 +188,51 @@ public class SheetHandler {
                 if (song.getName().startsWith("???") || song.getName().startsWith("Unknown") || song.getName().contains("???") || song.getName().contains("Unknown") ||  song.getName().contains("Collaborations]"))
                     continue;
                 
-                Song oldSong = null;
     
-                if (getOldSong(song.getName()) == null && getOldSong(song.getNotes()) == null) {
+                if (getOldSong(song.getName()) == null) {
+                    if (getOldSong(song.getNotes()) != null) {
+                        message.append("The song \"**").append(song.getName()).append("\"** (").append(song.getAvailable()).append(") had a name change.");
+                        message.append("\n\n** New Name: **").append(song.getName());
+                        message.append("\n\n** Old Name: **").append(getOldSong(song.getNotes()).getName());
+    
+                        embed.setColor(Color.getHSBColor(358, 100, 49))
+                                .setDescription(message)
+                                .setThumbnail(ImageUtil.getImage(song.getEra()))
+                                .setAuthor("EDIT EDIT EDIT EDIT EDIT EDIT")
+                                .build();
+    
+                        if (newShitChannel != null) {
+                            if (!(embed.isEmpty())) {
+                                newShitChannel.sendMessageEmbeds(embed.build()).queue();
+                            }
+                        } else {
+                            System.out.println("TEXT CHANNEL NULL LOOOOL");
+                        }
+                        
+                        continue;
+                    }
                     //if (lastSongs.isEmpty()) return;
                     message.append("\n\n**Available: **").append(song.getAvailable());
                     message.append("\n\n**Song: **").append(song.getName());
                     message.append("\n\n**Era: **").append(song.getEra());
                     message.append("\n\n**Description: **").append(song.getNotes());
-        
+    
                     if (!song.getTrackLength().equals(""))
                         message.append("\n\n**Track Length: **").append(song.getTrackLength());
-        
+    
                     message.append("\n\n**Type: **").append(song.getType());
-        
+    
                     if (!song.getQuality().equals("Not Available"))
                         message.append("\n\n**Quality: **").append(song.getQuality());
-        
+    
                     if (song.getLinks() != null)
                         message.append("\n\n**Links: **\n").append(song.getLinks());
-        
+    
                     embed.setColor(Color.getHSBColor(358, 100, 49))
                             .setDescription(message)
                             .setThumbnail(ImageUtil.getImage(song.getEra()))
                             .setAuthor("NEW NEW NEW NEW NEW NEW");
-        
+    
                     if (newShitChannel != null) {
                         if (!(embed.isEmpty())) {
                             newShitChannel.sendMessageEmbeds(embed.build()).queue();
@@ -223,14 +243,10 @@ public class SheetHandler {
                     continue;
                 }
                 
-                if (getOldSong(song.getName()).getName().equals(song.getName())) {
-                     oldSong = getOldSong(song.getName());
-                } else if (getOldSong(song.getName()).getNotes().equals(song.getNotes())) {
-                    oldSong = getOldSong(song.getNotes());
-                }
+                Song oldSong = getOldSong(song.getName());
                 
                 if (!(oldSong.getName().equals(song.getName()))) {
-                    message.append("The song \"**").append(song.getName()).append("**\" (").append(song.getAvailable()).append(") had an name change.");
+                    message.append("The song \"**").append(song.getName()).append("**\" (").append(song.getAvailable()).append(") had a name change.");
                     message.append("\n\n** New Name: **").append(song.getEra());
                     message.append("\n\n** Old Name: **").append(oldSong.getEra());
         
@@ -252,8 +268,11 @@ public class SheetHandler {
                 } else if (!(oldSong.getNotes().equals(song.getNotes()))) {
                     message.append("The song \"**").append(song.getName()).append("**\" (").append(song.getAvailable()).append(") had a notes change.");
                     message.append("\n\n** New Notes: **").append(song.getNotes());
-                    message.append("\n\n** Old Notes: **").append(oldSong.getNotes());
     
+                    if (!oldSong.getNotes().equals("")) {
+                        message.append("\n\n** Old Notes: **").append(oldSong.getNotes());
+                    }
+                    
                     embed.setColor(Color.getHSBColor(358, 100, 49))
                             .setDescription(message)
                             .setThumbnail(ImageUtil.getImage(song.getEra()))
