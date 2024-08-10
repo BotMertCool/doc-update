@@ -3,3 +3,6 @@
 application.conf
 .idea
 target
+kanyewest/
+target/
+dependency-reduced-pom.xml
